@@ -62,7 +62,7 @@ public class ServiceConfigTest {
     public void setUp() throws Exception {
         MockProtocol2.delegate = protocolDelegate;
         MockRegistryFactory2.registry = registryDelegate;
-        Mockito.when(protocolDelegate.export(Mockito.any(Invoker.class))).thenReturn(exporter);
+        Mockito.when(protocolDelegate.export((Invoker)Mockito.any(Invoker.class))).thenReturn(exporter);
 
         ApplicationConfig app = new ApplicationConfig("app");
 
@@ -120,7 +120,7 @@ public class ServiceConfigTest {
         assertThat(url.getParameters(), hasKey(Constants.METHODS_KEY));
         assertThat(url.getParameters().get(Constants.METHODS_KEY), containsString("echo"));
         assertThat(url.getParameters(), hasEntry(Constants.SIDE_KEY, Constants.PROVIDER));
-        Mockito.verify(protocolDelegate).export(Mockito.any(Invoker.class));
+        Mockito.verify(protocolDelegate).export((Invoker)Mockito.any(Invoker.class));
     }
 
     @Test
